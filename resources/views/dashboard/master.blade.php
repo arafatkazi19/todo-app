@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Page</title>
+    <title>Dashboard</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('/')}}/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -290,13 +290,13 @@
                         <a href="{{route('home')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Todo Lists<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Add Category</a>
+                                <a href="{{route('todoLists.create')}}">Add Todo</a>
                             </li>
                             <li>
-                                <a href="#">Manage Category</a>
+                                <a href="{{route('todoLists.index')}}">Manage Todo</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
