@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home.home');
+
+        $todoListCount = auth()->user()->todoLists()->count();
+        $tasksCount = auth()->user()->todoLists()->withCount('tasks')->get()->sum('tasks_count');
+        $incompleteTasksCount = auth()->user()->todoLists->flatMap->tasks->where('status', 0)->count();
+
+
+
+        return view('dashboard.home.home', compact( 'todoListCount', 'tasksCount', 'incompleteTasksCount'));
     }
 }

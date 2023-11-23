@@ -26,4 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::resource('todoLists', TodoListController::class);
     Route::resource('todoLists.tasks', TaskController::class);
+
 });
