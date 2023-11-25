@@ -26,7 +26,7 @@ class TaskController extends Controller
 
     public function create(TodoList $todoList)
     {
-        // Ensure the requested to-do list belongs to the authenticated user
+
         $this->authorizeUser($todoList);
 
         return view('dashboard.tasks.create', compact('todoList'));
@@ -34,7 +34,7 @@ class TaskController extends Controller
 
     public function store(Request $request, TodoList $todoList)
     {
-        // Ensure the requested to-do list belongs to the authenticated user
+
         $this->authorizeUser($todoList);
 
         $validatedData = $request->validate([
@@ -42,7 +42,7 @@ class TaskController extends Controller
             'description' => 'required',
         ]);
 
-        // Create a new task associated with the to-do list
+
         $todoList->tasks()->create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
@@ -55,7 +55,7 @@ class TaskController extends Controller
 
     public function edit(TodoList $todoList, Task $task)
     {
-        // Ensure the requested task belongs to the authenticated user
+
         $this->authorizeUser($task);
 
         return view('dashboard.tasks.edit', compact('todoList', 'task'));
@@ -74,10 +74,10 @@ class TaskController extends Controller
                 'status' => 'required',
             ]);
 
-            // Update the task attributes
+
             $validatedData['todo_list_id'] = $todoList->id;
 
-            // Update the task attributes
+
             $task->update($validatedData);
         }
         return redirect()->route('todoLists.show', $todoList);
@@ -85,10 +85,10 @@ class TaskController extends Controller
 
     public function destroy(TodoList $todoList, Task $task)
     {
-        // Ensure the requested task belongs to the authenticated user
+
         $this->authorizeUser($task);
 
-        // Delete the task
+
         $task->delete();
 
         return redirect()->route('todoLists.show', $todoList);

@@ -22,7 +22,7 @@ class TodoListController extends Controller
 
     public function index()
     {
-        // Fetch all to-do lists for the authenticated user
+
         $todoLists = auth()->user()->todoLists;
         //dd($todoLists);
 
@@ -40,7 +40,7 @@ class TodoListController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        // Create a new to-do list associated with the authenticated user
+
         $todoList = auth()->user()->todoLists()->create([
             'name' => $validatedData['name'],
             'user_id' => auth()->user()->id
@@ -71,7 +71,7 @@ class TodoListController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        // Update the to-do list attributes
+
         $todoList->update([
             'name' => $validatedData['name'],
         ]);
@@ -83,7 +83,7 @@ class TodoListController extends Controller
     {
         $this->authorizeUser($todoList);
 
-        // Delete the to-do list
+
         $todoList->delete();
 
         return redirect()->route('todoLists.index');
